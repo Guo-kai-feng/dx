@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport"
+        content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <title>Title</title>
+    <script src="https://cdn.dingxiang-inc.com/ctu-group/captcha-ui/index.js"></script>
+    <!--    <script src="/static/demo.js"></script>-->
+
+</head>
+
+<body>
+    <div id="c1" style="margin-left: auto;margin-right: auto;overflow:hidden;"></div>
+</body>
+<script>
+    var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
+        appId: '5f6727ec854786a86cd4c3c171d13499', //  国航m网     (appId,在控制台中“应用管理”或“应用配置”模块获取)
+        // appId: '5f6727ec854786a86cd4c3c171d13499', // 山东新官网
+        //appId: '2b0cd4d09496b25e508714807de67998', // 山东新官网
+        // appId: '918a0c513cb14a7f9f95f54dc90376dd', // 自己注册的
+        // appId: '99de95ad1f23597c23b3558d932ded3c', // 只有滑块的 appId
+        success: function (token) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("POST", "/token", true);
+            xmlHttp.setRequestHeader("Content-type", "application/json");
+            xmlHttp.send(JSON.stringify({ 'token': token }));
+            console.log('token:', token);
+        }
+    })
+</script>
+
+</html>
